@@ -6,6 +6,7 @@
 	$mapObject = ms_newMapObj("/ms4w/apache/htdocs/map.map");
 	$defSize=3;
 	$checkPan="CHECKED";
+	$bioclimexecuted = 0;
 
 	if ( isset($_GET["mapa_x"]) && isset($_GET["mapa_y"]) ) 
 	{
@@ -17,6 +18,7 @@
 		$extentRectObject->setextent($arrayExtent[0],$arrayExtent[1],$arrayExtent[2],$arrayExtent[3]);
 		$zoomFactor = $_GET["zoom"]*$_GET["zsize"];
 		$defSize = $_GET['zsize'];
+		$bioclimexecuted = $_GET['bioclim'];
 
 		if ($zoomFactor == 0) 
 		{
@@ -40,9 +42,14 @@
 			$checkZin = "CHECKED";
 			$zoomFactor = $zoomFactor + 1;
 		}
+		if ($bioclimexecuted)
+		{
+			$layer = $mapObject->getLayerByName('bioclima');
+			$layer->status = MS_ON;
+		}
 		$mapObject->zoompoint($zoomFactor,$pointObject,$mapObject->width,$mapObject->height,$extentRectObject);
 	}
-	else if ($_SERVER['REQUEST_METHOD'] == 'POST')
+	if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	{
 		$layers = $_POST['layers']; 
 		$layers2 = $_POST['layersSalida']; 
@@ -57,7 +64,6 @@
 		else
 		{
 			$nLayers = count($layers);
-			echo($nLayers);
 			for($i=0; $i < $nLayers; $i++)
 			{
 				$content = str_replace("#M1<".$layers[$i].">","",$content);
@@ -108,6 +114,7 @@
 		exec('om_console request.txt',$out ,$return_var);
 		$layer = $mapObject->getLayerByName('bioclima');
 		$layer->status = MS_ON;
+		$bioclimexecuted = 1;
 	}
 	$mapImage = $mapObject->draw();
 	$urlImage = $mapImage->saveWebImage();
@@ -198,20 +205,16 @@ function UpdateSelected()
           <td><span class="style3"> Zoom Size </span></td>
           <td><input type=TEXT name="zsize" value="<?php echo $defSize; ?>"  size=2>          </td>
         </tr>
-        <tr>
-          <td><span class="style3">Full Extent</span></td>
-          <td><input type=SUBMIT name="full" value="Go"   size=2>          </td>
         </table>
+	  </td>
       <td width="78%" scope="col" >
         <div align="center">
         <input type=IMAGE name="mapa" src="<?php echo $urlImage; ?>" border=1>
       </div></td>
-	  <td>
-	 
-	  </td>
     </tr>
   </table>
   <INPUT TYPE=HIDDEN NAME="extent" VALUE="<?php echo $printExtentHTML; ?>">
+  <INPUT TYPE=HIDDEN NAME="bioclim" VALUE="<?php echo $bioclimexecuted; ?>">
 </FORM>
 <FORM METHOD=POST ACTION=<?php echo $HTTP_SERVER_VARS['PHP_SELF']?> >
  <table   >
@@ -250,7 +253,7 @@ function UpdateSelected()
 	</tr>
       </td>
       </table>
-<input name="execute" type="submit" value="GO"/>
+	<input name="execute" type="submit" value="GO"/>
 </FORM>
 </CENTER>
 </BODY>
