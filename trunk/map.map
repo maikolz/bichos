@@ -1,0 +1,216 @@
+MAP
+	NAME COSTARICA
+	SIZE 600 300
+	EXTENT -85 8 -82 12 
+    #
+    # Start of web interface definition
+    #
+	WEB
+		IMAGEPATH "/ms4w/tmp/ms_tmp/"
+		IMAGEURL "/ms_tmp/"
+	END
+	#
+	# Start of symbol definitions
+	#
+    SYMBOL
+		NAME 'circle'
+		TYPE ELLIPSE
+		POINTS 1 1 END
+		FILLED TRUE
+	END
+	
+	SYMBOL
+		NAME 'star'
+		TYPE VECTOR
+		FILLED TRUE
+		POINTS
+			0 .375
+			.35 .375
+			.5 0
+			.65 .375
+			1 .375
+			.75 .625
+			.875 1
+			.5 .75
+			.125 1
+			.25 .625
+		END
+	END 
+	
+	#
+	# Start of reference map
+	#
+	REFERENCE
+		IMAGE images/referencemap.png
+		EXTENT -85 8 -82 12
+		SIZE 120 120
+		STATUS ON
+		MINBOXSIZE 5
+		MAXBOXSIZE 100
+		COLOR 255 0 0
+		OUTLINECOLOR 0 0 0
+		MARKERSIZE 8
+		MARKER 'star'
+	END
+	
+	#
+	# Start of layer definitions
+	LAYER
+		NAME Provincias
+		TYPE POLYGON
+		STATUS DEFAULT
+		DATA cr_provincias
+		LABELITEM 'NPROVINCIA'
+		CLASSITEM 'NPROVINCIA'
+		CLASS
+			NAME 'ALAJUELA'	
+			EXPRESSION 'ALAJUELA'
+			STYLE
+				COLOR	252 107 76
+				OUTLINECOLOR 100 100 100
+			END
+			LABEL
+				COLOR           0 0 0
+				FONT            arial 
+				SIZE            small 
+				POSITION        AUTO 
+				PARTIALS        FALSE
+			END
+		END
+		CLASS
+			NAME 'HEREDIA'
+			EXPRESSION 'HEREDIA'
+			STYLE
+				COLOR	253 232 125
+				OUTLINECOLOR 100 100 100
+			END
+			LABEL
+				COLOR           0 0 0
+				FONT            arial 
+				SIZE            small 
+				POSITION        AUTO 
+				PARTIALS        FALSE
+			END
+		END
+		CLASS
+			NAME 'SAN JOSE'
+			EXPRESSION 'SAN JOSE'
+			STYLE
+				COLOR	187 125 188
+				OUTLINECOLOR 100 100 100
+			END
+			LABEL
+				COLOR           0 0 0
+				FONT            arial 
+				SIZE            small 
+				POSITION        AUTO 
+				PARTIALS        FALSE
+			END
+		END
+		CLASS
+			NAME 'PUNTARENAS'
+			EXPRESSION 'PUNTARENAS'
+			STYLE
+				COLOR	252 143 78
+				OUTLINECOLOR 100 100 100
+			END
+			LABEL
+				COLOR           0 0 0
+				FONT            arial 
+				SIZE            small 
+				POSITION        AUTO 
+				PARTIALS        FALSE
+			END
+		END
+		CLASS
+			NAME 'GUANACASTE'
+			EXPRESSION 'GUANACASTE'
+			STYLE
+				COLOR	253 140 18
+				OUTLINECOLOR 100 100 100
+			END
+			LABEL
+				COLOR           0 0 0
+				FONT            arial 
+				SIZE            small 
+				POSITION        AUTO 
+				PARTIALS        FALSE
+			END
+		END
+		CLASS
+			NAME 'LIMON'
+			EXPRESSION 'LIMON'
+			STYLE
+				COLOR	164 216 141
+				OUTLINECOLOR 100 100 100
+			END
+			LABEL
+				COLOR           0 0 0
+				FONT            arial 
+				SIZE            small 
+				POSITION        AUTO 
+				PARTIALS        FALSE
+			END
+		END
+		CLASS
+			NAME 'CARTAGO'
+			EXPRESSION 'CARTAGO'
+			STYLE
+				COLOR	145 168 209
+				OUTLINECOLOR 100 100 100
+			END
+			LABEL
+				COLOR           0 0 0
+				FONT            arial 
+				SIZE            small 
+				POSITION        AUTO 
+				PARTIALS        FALSE
+			END
+		END
+	END
+	LAYER
+		NAME TinamusMajor
+		TYPE POINT
+		STATUS ON
+		DATA TinamusMajor
+		CLASS
+			NAME 'tinamusmajor'
+			STYLE
+				COLOR 0 0 0
+				SYMBOL 'circle'
+				SIZE 2
+			END
+		END
+    END
+	
+	LAYER
+		NAME bioclima
+		DATA "TinamusBio.tif"
+		TYPE RASTER
+		STATUS Off
+		PROCESSING "BANDS=1"
+		PROCESSING "COLOR_MATCH_THRESHOLD=3"
+		PROCESSING "DITHER=YES"
+		
+	END
+	LAYER
+		NAME BordeProvincias
+		TYPE POLYGON
+		STATUS DEFAULT
+		DATA cr_provincias
+		LABELITEM "NPROVINCIA"
+		CLASS
+			STYLE
+				OUTLINECOLOR 100 100 100
+			END			
+			LABEL
+				COLOR           0 0 100
+				FONT            arial 
+				SIZE            small 
+				POSITION        AUTO 
+				PARTIALS        FALSE 
+				OUTLINECOLOR    0 0 255
+			END
+		END
+	END
+END
