@@ -90,7 +90,11 @@ Occurrences group = Tinamus major
 # areas will be those with nodata (areas with zero as data will not 
 # be masked at all).
 #
-Output mask = prec_2000_cr.tif
+#OM<1>Output mask = prec_2000_cr.tif
+#OM<2>Output mask = diaslluviosos_2000_cr.tif
+#OM<3>Output mask = radiacion_2000_cr.tif
+#OM<4>Output mask = tmax_2000_cr.tif
+#OM<5>Output mask = tmin_2000_cr.tif
 
 # Output model name (serialized model).
 #

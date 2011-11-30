@@ -19,7 +19,7 @@
 		$zoomFactor = $_GET["zoom"]*$_GET["zsize"];
 		$defSize = $_GET['zsize'];
 		$bioclimexecuted = $_GET['bioclim'];
-
+	
 		if ($zoomFactor == 0) 
 		{
 			$zoomFactor = 1;
@@ -64,6 +64,8 @@
 		else
 		{
 			$nLayers = count($layers);
+			//echo("<p>Capas:");
+			//print_r($layers);
 			for($i=0; $i < $nLayers; $i++)
 			{
 				$content = str_replace("#M1<".$layers[$i].">","",$content);
@@ -77,10 +79,11 @@
 		else
 		{
 			$nLayers2 = count($layers2);
-			echo($layers2[0]);
+			//echo("<p>Plantilla:");
+			//print_r($layers2);
 			for($i=0; $i < $nLayers2; $i++)
 			{
-			echo($layers2[$i]);
+				echo("<p>Plantilla:".$layers2[$i]."</p>\n");
 				$content = str_replace("#OF<".$layers2[$i].">","",$content);
 				$content = str_replace("#OM<".$layers2[$i].">","",$content);
 			}
@@ -111,7 +114,7 @@
 		fclose($requestFileHandle);
 			
 		set_time_limit(0);
-		exec('om_console request.txt',$out ,$return_var);
+		exec("om_console.exe request.txt");
 		$layer = $mapObject->getLayerByName('bioclima');
 		$layer->status = MS_ON;
 		$bioclimexecuted = 1;
@@ -166,9 +169,11 @@ function UpdateSelected()
             var select2 = document.getElementById ("ambientales2");
  
             // removes all options from select 2
-            while (select2.options.length) {
-                select2.options.remove (0);
-            }
+			select2.options.length = 0;
+
+            //while (select2.options.length) {
+               // select2.options.remove (0);
+            //}
            for (var i=0; i < select1.options.length; i++){
 			   
 			   if(select1.options[i].selected){
@@ -240,7 +245,7 @@ function UpdateSelected()
 	</td>
 	<td>
 		<H2>Especies</span> </H2>
-		<select name="layers" id="especies" size="2" multiple="multiple">
+		<select name="especies" id="especies" size="2" multiple="multiple">
 			<option value="1">Tinamus Major</option>
 		</select>
 	</td>
