@@ -42,9 +42,10 @@
 		}
 		$mapObject->zoompoint($zoomFactor,$pointObject,$mapObject->width,$mapObject->height,$extentRectObject);
 	}
-	if ($_SERVER['REQUEST_METHOD'] == 'POST')
+	else if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	{
-		$layers = $_POST['layers'];
+		$layers = $_POST['layers']; 
+		$layers2 = $_POST['layersSalida']; 
 		$stddev = $_POST['StandardDev'];
 				
 		$handle = fopen('requesttemplate.txt','r');
@@ -56,9 +57,26 @@
 		else
 		{
 			$nLayers = count($layers);
+			echo($nLayers);
 			for($i=0; $i < $nLayers; $i++)
 			{
-				$content = str_replace("#<".$layers[$i].">","",$content);
+				$content = str_replace("#M1<".$layers[$i].">","",$content);
+			}
+		}
+		
+		if(!isset($layers2))
+		{
+			echo("<p>No se selecciono ninguna capa de salida!</p>\n");
+		}
+		else
+		{
+			$nLayers2 = count($layers2);
+			echo($layers2[0]);
+			for($i=0; $i < $nLayers2; $i++)
+			{
+			echo($layers2[$i]);
+				$content = str_replace("#OF<".$layers2[$i].">","",$content);
+				$content = str_replace("#OM<".$layers2[$i].">","",$content);
 			}
 		}
 		if(!isset($stddev))
@@ -121,7 +139,43 @@
 -->
 </style>
 </HEAD>
-<BODY>
+
+
+<script type="text/javascript">
+
+function LimpiarVariables()
+{
+	var select2 = document.getElementById ("ambientales2");
+	while (select2.options.length) {
+                select2.options.remove (0);
+            }
+}
+function UpdateSelected()
+{
+	
+         
+
+            var select1 = document.getElementById ("ambientales");
+            var select2 = document.getElementById ("ambientales2");
+ 
+            // removes all options from select 2
+            while (select2.options.length) {
+                select2.options.remove (0);
+            }
+           for (var i=0; i < select1.options.length; i++){
+			   
+			   if(select1.options[i].selected){
+				   var option = new Option (select1.options[i].text, select1.options[i].value);
+				   select2.options.add (option);
+			   }
+		   }
+           
+	}
+	
+
+</script>
+
+<BODY onload "LimpiarVariables()">
 <CENTER>
 <FORM METHOD=GET ACTION=<?php echo $HTTP_SERVER_VARS['PHP_SELF']?>>
   <table width="800" >
@@ -163,14 +217,22 @@
  <table   >
     <tr>
       <td>
-	<H2>Variables ambientales</H2>
+	<H2>Variables Ambientales</H2>
 	</BR>
-	<select name="layers[]" id="ambientales" size="5" multiple="multiple">
+	<select name="layers[]" id="ambientales" size="5" multiple="multiple" onchange="UpdateSelected()">
 		<option value="1">Precipitacion</option>
 		<option value="2">Dias lluviosos</option>
 		<option value="3">Radiacion</option>
 		<option value="4">Temperatura Max</option>
 		<option value="5">Temperatura Min</option>
+	</select>
+	<H2>Variables de Salida</H2>
+		<select name="layersSalida[]" id="ambientales2" size="5" >
+		<option value="1">Precipitacion</option>
+		<option value="2">Dias lluviosos</option>
+		<option value="3">Radiacion</option>
+		<option value="4">Temperatura Max</option>
+		<option value="5">Temperatura Min</option
 	</select>
 	</td>
 	<td>
