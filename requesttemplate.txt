@@ -38,11 +38,11 @@ Occurrences group = Tinamus major
 # terralib>yourusername>yourpassword@PostgreSQL>localhost>terralib>5432>rain_coolest
 # To specify a categorical map use: Categorical map = 
 #
-#<1>Map = prec_2000_cr.tif
-#<2>Map = diaslluviosos_2000_cr.tif
-#<3>Map = radiacion_2000_cr.tif
-#<4>Map = tmax_2000_cr.tif
-#<5>Map = tmin_2000_cr.tif
+#M1<1>Map = prec_2000_cr.tif
+#M1<2>Map = diaslluviosos_2000_cr.tif
+#M1<3>Map = radiacion_2000_cr.tif
+#M1<4>Map = tmax_2000_cr.tif
+#M1<5>Map = tmin_2000_cr.tif
 
 # Mask to delimit the region to be used to generate the model (filter
 # the species ocurrencies/absences points).
@@ -50,7 +50,12 @@ Occurrences group = Tinamus major
 # areas will be those with nodata (areas with zero as data will not 
 # be masked at all).
 #
-Mask = prec_2000_cr.tif
+
+#M1<1>Mask  = prec_2000_cr.tif
+#M1<2>Mask  = diaslluviosos_2000_cr.tif
+#M1<3>Mask  = radiacion_2000_cr.tif
+#M1<4>Mask  = tmax_2000_cr.tif
+#M1<5>Mask  = tmin_2000_cr.tif
 
 # Uncomment the following lines to disable model statistics.
 #
@@ -62,14 +67,23 @@ Mask = prec_2000_cr.tif
 
 # File to be used as the output format.
 #
-Output format = prec_2000_cr.tif
+
+#OF<1>Output format = prec_2000_cr.tif
+#OF<2>Output format = diaslluviosos_2000_cr.tif
+#OF<3>Output format = radiacion_2000_cr.tif
+#OF<4>Output format = tmax_2000_cr.tif
+#OF<5>Output format = tmin_2000_cr.tif
 
 # Maps to be used as environmental variables to project the model
 # to create the output distribution map.
 # To specify a categorical map use: Categorical output map = 
 #
-Output map = prec_2000_cr.tif
 
+#OM<1>Output map = prec_2000_cr.tif
+#OM<2>Output map = diaslluviosos_2000_cr.tif
+#OM<3>Output map = radiacion_2000_cr.tif
+#OM<4>Output map = tmax_2000_cr.tif
+#OM<5>Output map = tmin_2000_cr.tif
 
 # Mask to delimit the region to project the model onto.
 # Note: Mask layers need to support nodata value assignment. Masked
