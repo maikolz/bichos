@@ -129,14 +129,16 @@
 		body {
 		margin: 0;
 		padding: 20;
-		font-family: "Georgia", serif;
+		font-family: "Arial", serif;
+		background-image:url('images/fondo.jpg');
+
 		
 		}
-		H2 {color:black;
-		font-family: serif;
+		H2 {color:white;
+		font-family: Arial;
 		
 		font-style: normal;
-		font-size:12}
+		font-size:14}
 		
 		
 		
@@ -187,11 +189,13 @@ function UpdateSelected()
 
 </script>
 
-<BODY onload "LimpiarVariables()">
+<BODY onload "LimpiarVariables()" >
 <CENTER>
-<FORM METHOD=GET ACTION=<?php echo $HTTP_SERVER_VARS['PHP_SELF']?>>
-  <table width="800" >
+
+  <table width="800" border="1"  bordercolor="white" >
+  
     <tr>
+	  <FORM METHOD=GET ACTION=<?php echo $HTTP_SERVER_VARS['PHP_SELF']?>>
       <td width="22%" scope="col">
 		<table border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#000000">
         <tr>
@@ -212,54 +216,65 @@ function UpdateSelected()
         </tr>
         </table>
 	  </td>
-      <td width="78%" scope="col" >
+      <td width="78%" scope="col"  >
         <div align="center">
-        <input type=IMAGE name="mapa" src="<?php echo $urlImage; ?>" border=1>
+		<H2>Informática Aplicada a la Ecología<H2>
+		</BR>
+		
+		<H2>MAPA COSTA RICA</H2>
+        <input type=IMAGE name="mapa" src="<?php echo $urlImage; ?>" border=1 >
       </div></td>
-    </tr>
-  </table>
-  <INPUT TYPE=HIDDEN NAME="extent" VALUE="<?php echo $printExtentHTML; ?>">
-  <INPUT TYPE=HIDDEN NAME="bioclim" VALUE="<?php echo $bioclimexecuted; ?>">
-</FORM>
-<FORM METHOD=POST ACTION=<?php echo $HTTP_SERVER_VARS['PHP_SELF']?> >
- <table   >
-    <tr>
-      <td>
-	<H2>Variables Ambientales</H2>
-	</BR>
-	<select name="layers[]" id="ambientales" size="5" multiple="multiple" onchange="UpdateSelected()">
-		<option value="1">Precipitacion</option>
-		<option value="2">Dias lluviosos</option>
-		<option value="3">Radiacion</option>
-		<option value="4">Temperatura Max</option>
-		<option value="5">Temperatura Min</option>
-	</select>
-	<H2>Variables de Salida</H2>
+	    <INPUT TYPE=HIDDEN NAME="extent" VALUE="<?php echo $printExtentHTML; ?>">
+        <INPUT TYPE=HIDDEN NAME="bioclim" VALUE="<?php echo $bioclimexecuted; ?>">
+      </FORM>
+	  
+	   <td>
+	   <FORM METHOD=POST ACTION=<?php echo $HTTP_SERVER_VARS['PHP_SELF']?> >
+		<table   >
+		<tr>
+		<td>
+		<H2>Variables Ambientales</H2>
+		
+		<select name="layers[]" id="ambientales" size="5" multiple="multiple" onchange="UpdateSelected()">
+			<option value="1">Precipitacion</option>
+			<option value="2">Dias lluviosos</option>
+			<option value="3">Radiacion</option>
+			<option value="4">Temperatura Max</option>
+			<option value="5">Temperatura Min</option>
+		</select>
+		<H2>Variables de Salida</H2>
 		<select name="layersSalida[]" id="ambientales2" size="5" >
-		<option value="1">Precipitacion</option>
-		<option value="2">Dias lluviosos</option>
-		<option value="3">Radiacion</option>
-		<option value="4">Temperatura Max</option>
-		<option value="5">Temperatura Min</option
-	</select>
-	</td>
-	<td>
-		<H2>Especies</span> </H2>
+			<option value="1">Precipitacion</option>
+			<option value="2">Dias lluviosos</option>
+			<option value="3">Radiacion</option>
+			<option value="4">Temperatura Max</option>
+			<option value="5">Temperatura Min</option>
+		</select>
+	   
+	
+		<H2>Especies </H2>
 		<select name="especies" id="especies" size="2" multiple="multiple">
 			<option value="1">Tinamus Major</option>
 		</select>
-	</td>
-	<td>
+	
+	    </BR>
 		<H2>BioClim</H2>
-		</BR>
-		<H2>StandardDeviationCutoff:</H2>  <input id="stdDev" type="text" name="StandardDev" value="0.674" onclick="if(document.getElementById('stdDev').value=='0.674')document.getElementById('stdDev').value='';" 
+		
+		<H2>StandardDeviationCutoff</H2>  <input id="stdDev" type="text" name="StandardDev" value="0.674" onclick="if(document.getElementById('stdDev').value=='0.674')document.getElementById('stdDev').value='';" 
 		onblur="if(document.getElementById('stdDev').value=='')document.getElementById('stdDev').value='0.674'; "/>
+		</BR>
+		<input name="execute" type="submit" value="GO"/>
 		</td>
-	</tr>
-      </td>
+				</tr>
+      
       </table>
-	<input name="execute" type="submit" value="GO"/>
+	
 </FORM>
+	    </td>
+    </tr>
+  </table>
+
+
 </CENTER>
 </BODY>
 </HTML>
