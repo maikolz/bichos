@@ -128,10 +128,10 @@
 <style type="text/css" src="css/style.css">
 		body {
 		margin: 0;
-		padding: 20;
+		padding: 20px;
 		font-family: "Arial", serif;
 		background-image:url('images/fondo.jpg');
-
+		color: #FFFFFF;
 		
 		}
 		H2 {color:white;
@@ -197,33 +197,51 @@ function UpdateSelected()
     <tr>
 	  <FORM METHOD=GET ACTION=<?php echo $HTTP_SERVER_VARS['PHP_SELF']?>>
       <td width="22%" scope="col">
-		<table border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#000000">
+		<table border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF">
         <tr>
           <td><span class="style3"> Pan </span></td>
-          <td><input type=RADIO name="zoom" value=0 <?php echo $checkPan; ?>>          </td>
+          <td>
+			<img src="/images/center.png" onclick="document.getElementById('recenter').checked = true" style="padding-left:4px;float:left"/>
+			<input id="recenter" type=RADIO name="zoom" value=0 <?php echo $checkPan; ?> style="display:none;">
+		  </td>
         </tr>
         <tr>
           <td><span class="style3"> Zoom In </span></td>
-          <td><input type=RADIO name="zoom" value=1 <?php echo $checkZin; ?>>          </td>
+          <td>
+			<img src="/images/zoomin.png" onclick="document.getElementById('zoomIn').checked = true" style="float:left"/>
+			<input id="zoomIn" type=RADIO name="zoom" value=1 <?php echo $checkZin; ?> style="display:none;">          
+		  </td>
         </tr>
         <tr>
           <td><span class="style3"> Zoom Out </span></td>
-          <td><input type=RADIO name="zoom" value=-1 <?php echo $checkZout; ?>>          </td>
+          <td>
+			<img src="/images/zoomout.png" onclick="document.getElementById('zoomOut').checked = true" style="float:left"/>
+			<input id="zoomOut" type=RADIO name="zoom" value=-1 <?php echo $checkZout; ?> style="display:none;">
+		  </td>
         </tr>
         <tr>
           <td><span class="style3"> Zoom Size </span></td>
-          <td><input type=TEXT name="zsize" value="<?php echo $defSize; ?>"  size=2>          </td>
+          <td>
+			<input type=TEXT name="zsize" value="<?php echo $defSize; ?>" style="width:23px;margin-left:5px;">          
+		  </td>
         </tr>
         </table>
 	  </td>
       <td width="78%" scope="col"  >
         <div align="center">
-		<H2>Informática Aplicada a la Ecología<H2>
+		<H2>Inform&aacute;tica Aplicada a la Ecolog&iacute;a<H2>
 		</BR>
 		
 		<H2>MAPA COSTA RICA</H2>
         <input type=IMAGE name="mapa" src="<?php echo $urlImage; ?>" border=1 >
-      </div></td>
+      </div>
+	  <div>
+		<p>Maikol Zumbado B17651<br>
+		Yeison Castillo 980820<br>
+		Lilliana P&eacute;rez 997390
+		</p>
+	  </div>
+	  </td>
 	    <INPUT TYPE=HIDDEN NAME="extent" VALUE="<?php echo $printExtentHTML; ?>">
         <INPUT TYPE=HIDDEN NAME="bioclim" VALUE="<?php echo $bioclimexecuted; ?>">
       </FORM>
