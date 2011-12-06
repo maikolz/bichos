@@ -1,14 +1,12 @@
 Requerimientos:
-Windows
-OpenModeller V.1.1.0
 
-Asignar permisos de ejecucion al usuario: IUSR.
-Activar la opcion de permitir al servicio interactuar con la pc en APACHE.
-
-
+1. Ejecutar en Windows
+2. OpenModeller V.1.1.0
+3. PHP
+4.Activar la opcion de permitir al servicio interactuar con la pc en APACHE.
 
 Ejecucion:
 
-{ServidorApache}/map.php
-http://localhost:8080/map.php
+{ServidorApache}/
+http://localhost:8080/
 
