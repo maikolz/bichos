@@ -1,0 +1,19 @@
+<html>
+<head>
+    <title>Prueba de MapServer</title>
+</head>
+<h2>
+    MapServer</h2>
+<form id="mapform" method="GET" action="/cgi-bin/mapserv.exe">
+    <input type="hidden" name="map" value="/ms4w/apache/htdocs/map.map">
+    <input type="hidden" name="layer" value="countries">
+    <input type="hidden" name="zoomdir" value="1">
+    <input type="hidden" name="zoomsize" value="2">
+    <input type="hidden" name="program" value="/cgi-bin/mapserv.exe">
+</form>
+
+<script type="text/javascript">
+    document.getElementById('mapform').submit();
+</script>
+
+</html>
