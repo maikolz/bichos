@@ -51,11 +51,11 @@ Occurrences group = Tinamus major
 # be masked at all).
 #
 
-#OM<1>Mask  = prec_2000_cr.tif
-#OM<2>Mask  = diaslluviosos_2000_cr.tif
-#OM<3>Mask  = radiacion_2000_cr.tif
-#OM<4>Mask  = tmax_2000_cr.tif
-#OM<5>Mask  = tmin_2000_cr.tif
+#M1<1>Mask  = prec_2000_cr.tif
+#M1<2>Mask  = diaslluviosos_2000_cr.tif
+#M1<3>Mask  = radiacion_2000_cr.tif
+#M1<4>Mask  = tmax_2000_cr.tif
+#M1<5>Mask  = tmin_2000_cr.tif
 
 # Uncomment the following lines to disable model statistics.
 #
