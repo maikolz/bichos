@@ -7,6 +7,6 @@ Requerimientos:
 
 Ejecucion:
 
-{ServidorApache}/
-http://localhost:8080/
+{ServidorApache}/index.php
+http://localhost:8080/index.php
 
