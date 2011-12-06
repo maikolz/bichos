@@ -83,7 +83,7 @@
 			//print_r($layers2);
 			for($i=0; $i < $nLayers2; $i++)
 			{
-				echo("<p>Plantilla:".$layers2[$i]."</p>\n");
+				//echo("<p>Plantilla:".$layers2[$i]."</p>\n");
 				$content = str_replace("#OF<".$layers2[$i].">","",$content);
 				$content = str_replace("#OM<".$layers2[$i].">","",$content);
 			}
@@ -281,7 +281,7 @@ function UpdateSelected()
 		<H2>StandardDeviationCutoff</H2>  <input id="stdDev" type="text" name="StandardDev" value="0.674" onclick="if(document.getElementById('stdDev').value=='0.674')document.getElementById('stdDev').value='';" 
 		onblur="if(document.getElementById('stdDev').value=='')document.getElementById('stdDev').value='0.674'; "/>
 		</BR>
-		<input name="execute" type="submit" value="GO"/>
+		<input name="execute" type="submit" value="Modelar"/>
 		</td>
 				</tr>
       
