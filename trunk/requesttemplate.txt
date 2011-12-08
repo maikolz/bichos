@@ -38,11 +38,29 @@ Occurrences group = Tinamus major
 # terralib>yourusername>yourpassword@PostgreSQL>localhost>terralib>5432>rain_coolest
 # To specify a categorical map use: Categorical map = 
 #
-#M1<1>Map = prec_2000_cr.tif
-#M1<2>Map = diaslluviosos_2000_cr.tif
-#M1<3>Map = radiacion_2000_cr.tif
-#M1<4>Map = tmax_2000_cr.tif
-#M1<5>Map = tmin_2000_cr.tif
+#M12000<1>Map = prec_2000_cr.tif
+#M12000<2>Map = diaslluviosos_2000_cr.tif
+#M12000<3>Map = radiacion_2000_cr.tif
+#M12000<4>Map = tmax_2000_cr.tif
+#M12000<5>Map = tmin_2000_cr.tif
+
+#M12030<1>Map = prec_2030_cr.tif
+#M12030<2>Map = diaslluviosos_2030_cr.tif
+#M12030<3>Map = radiacion_2030_cr.tif
+#M12030<4>Map = tmax_2030_cr.tif
+#M12030<5>Map = tmin_2030_cr.tif
+
+#M12050<1>Map = prec_2050_cr.tif
+#M12050<2>Map = diaslluviosos_2050_cr.tif
+#M12050<3>Map = radiacion_2050_cr.tif
+#M12050<4>Map = tmax_2050_cr.tif
+#M12050<5>Map = tmin_2050_cr.tif
+
+#M12080<1>Map = prec_2080_cr.tif
+#M12080<2>Map = diaslluviosos_2080_cr.tif
+#M12080<3>Map = radiacion_2080_cr.tif
+#M12080<4>Map = tmax_2080_cr.tif
+#M12080<5>Map = tmin_2080_cr.tif
 
 # Mask to delimit the region to be used to generate the model (filter
 # the species ocurrencies/absences points).
@@ -51,11 +69,29 @@ Occurrences group = Tinamus major
 # be masked at all).
 #
 
-#OM<1>Mask  = prec_2000_cr.tif
-#OM<2>Mask  = diaslluviosos_2000_cr.tif
-#OM<3>Mask  = radiacion_2000_cr.tif
-#OM<4>Mask  = tmax_2000_cr.tif
-#OM<5>Mask  = tmin_2000_cr.tif
+#OM2000<1>Mask  = prec_2000_cr.tif
+#OM2000<2>Mask  = diaslluviosos_2000_cr.tif
+#OM2000<3>Mask  = radiacion_2000_cr.tif
+#OM2000<4>Mask  = tmax_2000_cr.tif
+#OM2000<5>Mask  = tmin_2000_cr.tif
+
+#OM2030<1>Mask  = prec_2030_cr.tif
+#OM2030<2>Mask  = diaslluviosos_2030_cr.tif
+#OM2030<3>Mask  = radiacion_2030_cr.tif
+#OM2030<4>Mask  = tmax_2030_cr.tif
+#OM2030<5>Mask  = tmin_2030_cr.tif
+
+#OM2050<1>Mask  = prec_2050_cr.tif
+#OM2050<2>Mask  = diaslluviosos_2050_cr.tif
+#OM2050<3>Mask  = radiacion_2050_cr.tif
+#OM2050<4>Mask  = tmax_2050_cr.tif
+#OM2050<5>Mask  = tmin_2050_cr.tif
+
+#OM2080<1>Mask  = prec_2080_cr.tif
+#OM2080<2>Mask  = diaslluviosos_2080_cr.tif
+#OM2080<3>Mask  = radiacion_2080_cr.tif
+#OM2080<4>Mask  = tmax_2080_cr.tif
+#OM2080<5>Mask  = tmin_2080_cr.tif
 
 # Uncomment the following lines to disable model statistics.
 #
@@ -68,33 +104,88 @@ Occurrences group = Tinamus major
 # File to be used as the output format.
 #
 
-#OF<1>Output format = prec_2000_cr.tif
-#OF<2>Output format = diaslluviosos_2000_cr.tif
-#OF<3>Output format = radiacion_2000_cr.tif
-#OF<4>Output format = tmax_2000_cr.tif
-#OF<5>Output format = tmin_2000_cr.tif
+#OF2000<1>Output format = prec_2000_cr.tif
+#OF2000<2>Output format = diaslluviosos_2000_cr.tif
+#OF2000<3>Output format = radiacion_2000_cr.tif
+#OF2000<4>Output format = tmax_2000_cr.tif
+#OF2000<5>Output format = tmin_2000_cr.tif
+
+#OF2030<1>Output format = prec_2030_cr.tif
+#OF2030<2>Output format = diaslluviosos_2030_cr.tif
+#OF2030<3>Output format = radiacion_2030_cr.tif
+#OF2030<4>Output format = tmax_2030_cr.tif
+#OF2030<5>Output format = tmin_2030_cr.tif
+
+#OF2050<1>Output format = prec_2050_cr.tif
+#OF2050<2>Output format = diaslluviosos_2050_cr.tif
+#OF2050<3>Output format = radiacion_2050_cr.tif
+#OF2050<4>Output format = tmax_2050_cr.tif
+#OF2050<5>Output format = tmin_2050_cr.tif
+
+#OF2080<1>Output format = prec_2080_cr.tif
+#OF2080<2>Output format = diaslluviosos_2080_cr.tif
+#OF2080<3>Output format = radiacion_2080_cr.tif
+#OF2080<4>Output format = tmax_2080_cr.tif
+#OF2080<5>Output format = tmin_2080_cr.tif
 
 # Maps to be used as environmental variables to project the model
 # to create the output distribution map.
 # To specify a categorical map use: Categorical output map = 
 #
 
-#OM<1>Output map = prec_2000_cr.tif
-#OM<2>Output map = diaslluviosos_2000_cr.tif
-#OM<3>Output map = radiacion_2000_cr.tif
-#OM<4>Output map = tmax_2000_cr.tif
-#OM<5>Output map = tmin_2000_cr.tif
+#OM2000<1>Output map = prec_2000_cr.tif
+#OM2000<2>Output map = diaslluviosos_2000_cr.tif
+#OM2000<3>Output map = radiacion_2000_cr.tif
+#OM2000<4>Output map = tmax_2000_cr.tif
+#OM2000<5>Output map = tmin_2000_cr.tif
+
+#OM2030<1>Output map = prec_2030_cr.tif
+#OM2030<2>Output map = diaslluviosos_2030_cr.tif
+#OM2030<3>Output map = radiacion_2030_cr.tif
+#OM2030<4>Output map = tmax_2030_cr.tif
+#OM2030<5>Output map = tmin_2030_cr.tif
+
+#OM2050<1>Output map = prec_2050_cr.tif
+#OM2050<2>Output map = diaslluviosos_2050_cr.tif
+#OM2050<3>Output map = radiacion_2050_cr.tif
+#OM2050<4>Output map = tmax_2050_cr.tif
+#OM2050<5>Output map = tmin_2050_cr.tif
+
+#OM2080<1>Output map = prec_2080_cr.tif
+#OM2080<2>Output map = diaslluviosos_2080_cr.tif
+#OM2080<3>Output map = radiacion_2080_cr.tif
+#OM2080<4>Output map = tmax_2080_cr.tif
+#OM2080<5>Output map = tmin_2080_cr.tif
+
 
 # Mask to delimit the region to project the model onto.
 # Note: Mask layers need to support nodata value assignment. Masked
 # areas will be those with nodata (areas with zero as data will not 
 # be masked at all).
 #
-#OM<1>Output mask = prec_2000_cr.tif
-#OM<2>Output mask = diaslluviosos_2000_cr.tif
-#OM<3>Output mask = radiacion_2000_cr.tif
-#OM<4>Output mask = tmax_2000_cr.tif
-#OM<5>Output mask = tmin_2000_cr.tif
+#OM2000<1>Output mask = prec_2000_cr.tif
+#OM2000<2>Output mask = diaslluviosos_2000_cr.tif
+#OM2000<3>Output mask = radiacion_2000_cr.tif
+#OM2000<4>Output mask = tmax_2000_cr.tif
+#OM2000<5>Output mask = tmin_2000_cr.tif
+
+#OM2030<1>Output mask = prec_2030_cr.tif
+#OM2030<2>Output mask = diaslluviosos_2030_cr.tif
+#OM2030<3>Output mask = radiacion_2030_cr.tif
+#OM2030<4>Output mask = tmax_2030_cr.tif
+#OM2030<5>Output mask = tmin_2030_cr.tif
+
+#OM2050<1>Output mask = prec_2050_cr.tif
+#OM2050<2>Output mask = diaslluviosos_2050_cr.tif
+#OM2050<3>Output mask = radiacion_2050_cr.tif
+#OM2050<4>Output mask = tmax_2050_cr.tif
+#OM2050<5>Output mask = tmin_2050_cr.tif
+
+#OM2080<1>Output mask = prec_2080_cr.tif
+#OM2080<2>Output mask = diaslluviosos_2080_cr.tif
+#OM2080<3>Output mask = radiacion_2080_cr.tif
+#OM2080<4>Output mask = tmax_2080_cr.tif
+#OM2080<5>Output mask = tmin_2080_cr.tif
 
 # Output model name (serialized model).
 #
