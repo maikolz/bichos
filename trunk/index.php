@@ -54,9 +54,22 @@
 		$layers = $_POST['layers']; 
 		$layers2 = $_POST['layersSalida']; 
 		$stddev = $_POST['StandardDev'];
+		$anno = $_POST['anno'];
 				
 		$handle = fopen('requesttemplate.txt','r');
 		$content = fread($handle,filesize('requesttemplate.txt'));
+		if(!isset($anno))
+		{
+			echo("<p>No se selecciono el anno!</p>\n");
+			$anno="2000";
+		}
+		
+		
+		if(!isset($layers2))
+		{
+			echo("<p>No se selecciono ninguna capa de salida!</p>\n");
+		}
+		
 		if(!isset($layers))
 		{
 			echo("<p>No se selecciono ninguna capa!</p>\n");
@@ -68,7 +81,7 @@
 			//print_r($layers);
 			for($i=0; $i < $nLayers; $i++)
 			{
-				$content = str_replace("#M1<".$layers[$i].">","",$content);
+				$content = str_replace("#M1".$anno."<".$layers[$i].">","",$content);
 			}
 		}
 		
@@ -84,8 +97,8 @@
 			for($i=0; $i < $nLayers2; $i++)
 			{
 				//echo("<p>Plantilla:".$layers2[$i]."</p>\n");
-				$content = str_replace("#OF<".$layers2[$i].">","",$content);
-				$content = str_replace("#OM<".$layers2[$i].">","",$content);
+				$content = str_replace("#OF".$anno."<".$layers2[$i].">","",$content);
+				$content = str_replace("#OM".$anno."<".$layers2[$i].">","",$content);
 			}
 		}
 		if(!isset($stddev))
@@ -274,12 +287,20 @@ function UpdateSelected()
 		<select name="especies" id="especies" size="2" multiple="multiple">
 			<option value="1">Tinamus Major</option>
 		</select>
+		<H2>Año </H2>
+		<select name="anno" id="anno" size="5" >
+			<option value="2000">2000</option>
+			<option value="2030">2030</option>
+			<option value="2050">2050</option>
+			<option value="2080">2080</option>
+		</select>
 	
 	    </BR>
 		<H2>BioClim</H2>
 		
 		<H2>StandardDeviationCutoff</H2>  <input id="stdDev" type="text" name="StandardDev" value="0.674" onclick="if(document.getElementById('stdDev').value=='0.674')document.getElementById('stdDev').value='';" 
 		onblur="if(document.getElementById('stdDev').value=='')document.getElementById('stdDev').value='0.674'; "/>
+		</BR>
 		</BR>
 		<input name="execute" type="submit" value="Modelar"/>
 		</td>
