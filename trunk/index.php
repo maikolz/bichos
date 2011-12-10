@@ -329,7 +329,7 @@ function UpdateSelected()
 		  </tr>
 		  <tr>		  
 			   <td style="vertical-align:top">
-				<H1>Use Absences As Background :  </H1>
+				<H1>Use Absences As Background:  </H1>
 			   </td>
 			   <td style="vertical-align:top">
 				<H1><input id="Absence" type="text" name="Absence" value="0" size=5 onclick="if(document.getElementById('Absence').value=='0')document.getElementById('Absence').value='';" 
