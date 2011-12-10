@@ -55,12 +55,25 @@
 		$layers2 = $_POST['layersSalida']; 
 		$stddev = $_POST['StandardDev'];
 		$anno = $_POST['anno'];
+				//PARAMETROS DEL ALGORITMO 
+		$BGPoints= $_POST['BGPoints']; 
+		$Absence= $_POST['Absence']; 
+		$Presence= $_POST['Presence']; 
+		$Iterations= $_POST['Iterations']; 
+		$Tolerance= $_POST['Tolerance']; 
+		$OutputFormat= $_POST['OutputFormat']; 
+		$QuadraticFeatures= $_POST['QuadraticFeatures']; 
+		$ProductFeatures= $_POST['ProductFeatures']; 
+		$HingeFeatures= $_POST['HingeFeatures']; 
+		$ThresholdFeatures= $_POST['ThresholdFeatures']; 
+		
+		//
 				
 		$handle = fopen('requesttemplate.txt','r');
 		$content = fread($handle,filesize('requesttemplate.txt'));
 		if(!isset($anno))
 		{
-			echo("<p>No se selecciono el anno!</p>\n");
+			echo("<p>No se selecciono el año!</p>\n");
 			$anno="2000";
 		}
 		
@@ -101,25 +114,20 @@
 				$content = str_replace("#OM".$anno."<".$layers2[$i].">","",$content);
 			}
 		}
-		if(!isset($stddev))
-		{
-			//echo("<p>Usando StandardDev por defecto 0.674 </p>\n");
-			$content = str_replace("<StandardDev>","0.674",$content);		
-		}
-		else
-		{
-			//echo ("/"+$stddev+"/");
-			if($stddev==""){
-				//echo("<p>Usando StandardDev por defecto 0.674 </p>\n");
-				$content = str_replace("<StandardDev>","0.674",$content);
-				
-			}
-			else
-			{
-				//echo("<p>Usando StandardDev proporcionado </p>\n");
-				$content = str_replace("<StandardDev>",$stddev,$content);
-			}
-		}
+		//PARAMETROS DEL ALGORITMO 
+			$content = str_replace("<NumberOfBackgroundPoints>",$BGPoints,$content);
+			$content = str_replace("<UseAbsencesAsBackground>",$Absence,$content);
+			$content = str_replace("<IncludePresencePointsInBackground>",$Presence,$content);
+			$content = str_replace("<NumberOfIterations>",$Iterations,$content);
+			$content = str_replace("<TerminateTolerance>",$Tolerance,$content);
+			$content = str_replace("<OutputFormat>",$OutputFormat,$content);
+			$content = str_replace("<QuadraticFeatures>",$QuadraticFeatures,$content);
+			$content = str_replace("<ProductFeatures>",$ProductFeatures,$content);
+			$content = str_replace("<HingeFeatures>",$HingeFeatures,$content);
+			$content = str_replace("<ThresholdFeatures>",$ThresholdFeatures,$content);
+		
+		
+		
 		fclose($handle);
 		$requestFileName = "request.txt";
 		$requestFileHandle = fopen($requestFileName, 'w') or die("can't open file");
@@ -143,6 +151,7 @@
 		margin: 0;
 		padding: 20px;
 		font-family: "Arial", serif;
+		
 		background-image:url('images/fondo.jpg');
 		color: #FFFFFF;
 		
@@ -152,6 +161,12 @@
 		
 		font-style: normal;
 		font-size:14}
+		
+		H1 {color:white;
+		font-family: Arial;
+		
+		font-style: normal;
+		font-size:12}
 		
 		
 		
@@ -205,11 +220,11 @@ function UpdateSelected()
 <BODY onload "LimpiarVariables()" >
 <CENTER>
 
-  <table width="800" border="1"  bordercolor="white" >
+  <table width="1200" border="1"  bordercolor="white" >
   
     <tr>
 	  <FORM METHOD=GET ACTION=<?php echo $HTTP_SERVER_VARS['PHP_SELF']?>>
-      <td width="22%" scope="col">
+      <td width="10%" scope="col">
 		<table border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF">
         <tr>
           <td><span class="style3"> Pan </span></td>
@@ -240,7 +255,7 @@ function UpdateSelected()
         </tr>
         </table>
 	  </td>
-      <td width="78%" scope="col"  >
+      <td width="50%" scope="col"   >
         <div align="center">
 		<H2>Inform&aacute;tica Aplicada a la Ecolog&iacute;a<H2>
 		</BR>
@@ -259,11 +274,10 @@ function UpdateSelected()
         <INPUT TYPE=HIDDEN NAME="bioclim" VALUE="<?php echo $bioclimexecuted; ?>">
       </FORM>
 	  
-	   <td>
+	  <td style="vertical-align:top">
+	   
 	   <FORM METHOD=POST ACTION=<?php echo $HTTP_SERVER_VARS['PHP_SELF']?> >
-		<table   >
-		<tr>
-		<td>
+	  
 		<H2>Variables Ambientales</H2>
 		
 		<select name="layers[]" id="ambientales" size="5" multiple="multiple" onchange="UpdateSelected()">
@@ -273,6 +287,7 @@ function UpdateSelected()
 			<option value="4">Temperatura Max</option>
 			<option value="5">Temperatura Min</option>
 		</select>
+		
 		<H2>Variables de Salida</H2>
 		<select name="layersSalida[]" id="ambientales2" size="5" >
 			<option value="1">Precipitacion</option>
@@ -282,7 +297,6 @@ function UpdateSelected()
 			<option value="5">Temperatura Min</option>
 		</select>
 	   
-	
 		<H2>Especies </H2>
 		<select name="especies" id="especies" size="2" multiple="multiple">
 			<option value="1">Tinamus Major</option>
@@ -294,20 +308,125 @@ function UpdateSelected()
 			<option value="2050">2050</option>
 			<option value="2080">2080</option>
 		</select>
-	
-	    </BR>
-		<H2>BioClim</H2>
 		
-		<H2>StandardDeviationCutoff</H2>  <input id="stdDev" type="text" name="StandardDev" value="0.674" onclick="if(document.getElementById('stdDev').value=='0.674')document.getElementById('stdDev').value='';" 
-		onblur="if(document.getElementById('stdDev').value=='')document.getElementById('stdDev').value='0.674'; "/>
-		</BR>
-		</BR>
-		<input name="execute" type="submit" value="Modelar"/>
-		</td>
-				</tr>
-      
-      </table>
+	</td>
+	<td >
 	
+	        <H2>Algoritmo: MAXENT </H2>
+		
+		
+		
+		<table >
+		 <tr>
+		 
+			   <td style="vertical-align:top">
+				<H1>Number Of Background Points: </H1>
+			   </td>
+			   <td style="vertical-align:top">
+				<H1><input id="BGPoints" type="text" name="BGPoints" value="1000" size=5 onclick="if(document.getElementById('BGPoints').value=='1000')document.getElementById('BGPoints').value='';" 
+		onblur="if(document.getElementById('BGPoints').value=='')document.getElementById('BGPoints').value='1000'; "/></H1>
+			   </td>
+		  </tr>
+		  <tr>		  
+			   <td style="vertical-align:top">
+				<H1>Use Absences As Background :  </H1>
+			   </td>
+			   <td style="vertical-align:top">
+				<H1><input id="Absence" type="text" name="Absence" value="0" size=5 onclick="if(document.getElementById('Absence').value=='0')document.getElementById('Absence').value='';" 
+		onblur="if(document.getElementById('Absence').value=='')document.getElementById('Absence').value='0'; "/></H1>
+			   </td>
+		   
+	           </tr>
+
+		   <tr>		  
+			   <td style="vertical-align:top">
+				<H1>Include Presence Points In Background:  </H1>
+			   </td>
+			   <td style="vertical-align:top">
+				<H1><input id="Presence" type="text" name="Presence" value="1" size=5 onclick="if(document.getElementById('Presence').value=='1')document.getElementById('Presence').value='';" 
+		onblur="if(document.getElementById('Presence').value=='')document.getElementById('Presence').value='1'; "/></H1>
+			   </td>
+		   
+	           </tr>	
+		   <tr>		  
+			   <td style="vertical-align:top">
+				<H1>Number Of Iterations:     </H1>
+			   </td>
+			   <td style="vertical-align:top">
+				<H1><input id="Iterations" type="text" name="Iterations" value="500" size=5 onclick="if(document.getElementById('Iterations').value=='500')document.getElementById('Iterations').value='';" 
+		onblur="if(document.getElementById('Iterations').value=='')document.getElementById('Iterations').value='500'; "/></H1>
+			   </td>
+		   
+	           </tr>
+
+		   <tr>		  
+			   <td style="vertical-align:top">
+				<H1>Terminate Tolerance:     </H1>
+			   </td>
+			   <td style="vertical-align:top">
+				<H1><input id="Tolerance" type="text" name="Tolerance" value="0.00001" size=5 onclick="if(document.getElementById('Tolerance').value=='0.00001')document.getElementById('Tolerance').value='';" 
+		onblur="if(document.getElementById('Tolerance').value=='')document.getElementById('Tolerance').value='0.00001'; "/> </H1>
+			   </td>
+		   
+	           </tr>
+
+		   <tr>		  
+			   <td style="vertical-align:top">
+				<H1>OutputFormat (1 = Raw, 2 = Logistic):     </H1>
+			   </td>
+			   <td style="vertical-align:top">
+				<H1><input id="OutputFormat" type="text" name="OutputFormat" value="2" size=5 onclick="if(document.getElementById('OutputFormat').value=='2')document.getElementById('OutputFormat').value='';" 
+		onblur="if(document.getElementById('OutputFormat').value=='')document.getElementById('OutputFormat').value='2'; if((document.getElementById('OutputFormat').value>2)||(document.getElementById('OutputFormat').value==0))document.getElementById('OutputFormat').value='2'; "/></H1>
+			   </td>
+		   
+	           </tr>			   
+		   <tr>		  
+			   <td style="vertical-align:top">
+				<H1>QuadraticFeatures (1 / 0):     </H1>
+			   </td>
+			   <td style="vertical-align:top">
+				<H1><input id="QuadraticFeatures" type="text" name="QuadraticFeatures" value="1" size=5 onclick="if(document.getElementById('QuadraticFeatures').value=='1')document.getElementById('QuadraticFeatures').value='';" 
+		onblur="if(document.getElementById('QuadraticFeatures').value=='')document.getElementById('QuadraticFeatures').value='1'; if(document.getElementById('QuadraticFeatures').value>1)document.getElementById('QuadraticFeatures').value='1'; "/></H1>
+			   </td>
+		   
+	           </tr>
+		   <tr>		  
+			   <td style="vertical-align:top">
+				<H1>ProductFeatures (1 / 0): </H1>
+			   </td>
+			   <td style="vertical-align:top">
+				<H1><input id="ProductFeatures" type="text" name="ProductFeatures" value="1" size=5 onclick="if(document.getElementById('ProductFeatures').value=='1')document.getElementById('ProductFeatures').value='';" 
+		onblur="if(document.getElementById('ProductFeatures').value=='')document.getElementById('ProductFeatures').value='1'; if(document.getElementById('ProductFeatures').value>1)document.getElementById('ProductFeatures').value='1'; "/></H1>
+			   </td>
+		   
+	           </tr>
+		   <tr>		  
+			   <td style="vertical-align:top">
+				<H1>HingeFeatures (1 / 0):     </H1>
+			   </td>
+			   <td style="vertical-align:top">
+				<H1><input id="HingeFeatures" type="text" name="HingeFeatures" value="1" size=5 onclick="if(document.getElementById('HingeFeatures').value=='1')document.getElementById('HingeFeatures').value='';" 
+		onblur="if(document.getElementById('HingeFeatures').value=='')document.getElementById('HingeFeatures').value='1'; if(document.getElementById('HingeFeatures').value>1)document.getElementById('HingeFeatures').value='1'; "/></H1>
+			   </td>
+		   
+	           </tr>		   
+		   <tr>		  
+			   <td style="vertical-align:top">
+				<H1>ThresholdFeatures (1 / 0):      </H1>
+	
+			   </td>
+			   <td style="vertical-align:top">
+				<H1><input id="ThresholdFeatures" type="text" name="ThresholdFeatures" value="1" size=5 onclick="if(document.getElementById('ThresholdFeatures').value=='1')document.getElementById('ThresholdFeatures').value='';" 
+		onblur="if(document.getElementById('ThresholdFeatures').value=='')document.getElementById('ThresholdFeatures').value='1'; if(document.getElementById('ThresholdFeatures').value>1)document.getElementById('ThresholdFeatures').value='1'; "/> </H1>
+			   </td>
+		   
+	            </tr>	
+			<tr>		  
+			   <td style="vertical-align:top">
+				<input name="execute" type="submit" value="Modelar"/>
+		         </td>
+		</tr>
+        </table>
 </FORM>
 	    </td>
     </tr>
