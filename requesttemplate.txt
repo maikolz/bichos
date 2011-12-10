@@ -228,8 +228,8 @@ Output file type = GreyTiff
 ########
 # Bioclim
 #
-Algorithm = BIOCLIM
-Parameter = StandardDeviationCutoff <StandardDev>
+#Algorithm = BIOCLIM
+#Parameter = StandardDeviationCutoff <StandardDev>
 
 ########
 # Climate Space Model - Broken-Stick
@@ -321,23 +321,28 @@ Parameter = StandardDeviationCutoff <StandardDev>
 ########
 # Maximum Entropy
 #
-#Algorithm = MAXENT
-#Parameter = NumberOfBackgroundPoints 10000
-#Parameter = UseAbsencesAsBackground 0
-#Parameter = IncludePresencePointsInBackground 1
-#Parameter = NumberOfIterations 500
-#Parameter = TerminateTolerance 0.00001
+Algorithm = MAXENT
+Parameter = NumberOfBackgroundPoints <NumberOfBackgroundPoints>
+Parameter = UseAbsencesAsBackground <UseAbsencesAsBackground>
+Parameter = IncludePresencePointsInBackground <IncludePresencePointsInBackground>
+Parameter = NumberOfIterations <NumberOfIterations>
+Parameter = TerminateTolerance <TerminateTolerance>
+
 # Valid values for the parameter Output Format:
 # 1 = Raw, 2 = Logistic.
-#Parameter = OutputFormat 2
+Parameter = OutputFormat <OutputFormat>
+
 # Valid values: enable = 1, disable = 0
-#Parameter = QuadraticFeatures 1
+Parameter = QuadraticFeatures <QuadraticFeatures>
+
 # Valid values: enable = 1, disable = 0
-#Parameter = ProductFeatures 1
+Parameter = ProductFeatures <ProductFeatures>
+
 # Valid values: enable = 1, disable = 0
-#Parameter = HingeFeatures 1
+Parameter = HingeFeatures <HingeFeatures>
+
 # Valid values: enable = 1, disable = 0
-#Parameter = ThresholdFeatures 1
+Parameter = ThresholdFeatures <ThresholdFeatures>
 
 ########
 # Artificial Neural Networks
