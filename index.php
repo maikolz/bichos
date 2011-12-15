@@ -73,7 +73,7 @@
 		$content = fread($handle,filesize('requesttemplate.txt'));
 		if(!isset($anno))
 		{
-			echo("<p>No se selecciono el año!</p>\n");
+			echo("<p>No se selecciono el a&ntilde;o!</p>\n");
 			$anno="2000";
 		}
 		
@@ -130,7 +130,7 @@
 		
 		fclose($handle);
 		$requestFileName = "request.txt";
-		$requestFileHandle = fopen($requestFileName, 'w') or die("can't open file");
+		$requestFileHandle = fopen($requestFileName, 'w') or die("Error al abrir archivo");
 		fwrite($requestFileHandle, $content);
 		fclose($requestFileHandle);
 			
@@ -301,7 +301,7 @@ function UpdateSelected()
 		<select name="especies" id="especies" size="2" multiple="multiple">
 			<option value="1">Tinamus Major</option>
 		</select>
-		<H2>Año </H2>
+		<H2>A&ntilde;o </H2>
 		<select name="anno" id="anno" size="5" >
 			<option value="2000">2000</option>
 			<option value="2030">2030</option>
